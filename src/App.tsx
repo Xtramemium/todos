@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import './App.css';
 import { Form, TodosList } from './components';
 import { ITodo } from './interfaces.ts';
@@ -11,8 +11,30 @@ function App() {
 			title: 'Learn React',
 			completed: false,
 		},
+		{
+			id: uuidv4(),
+			title: 'use Effect',
+			completed: false,
+		},
+		{
+			id: uuidv4(),
+			title: 'Use State',
+			completed: false,
+		},
+		{
+			id: uuidv4(),
+			title: 'Find a job',
+			completed: false,
+		},
 	]);
+	const [visibleTodos, setVisibleTodos] = useState<ITodo[]>([...todos]);
 	const [inputValue, setInputValue] = useState<string>('');
+
+	useEffect(() => {
+		setVisibleTodos(
+			todos.filter((todo) => visibleTodos.some((task) => task.id === todo.id)),
+		);
+	}, [todos]);
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
 		setInputValue(e.target.value);
@@ -25,14 +47,12 @@ function App() {
 			completed: false,
 		};
 		setTodos([...todos, newTask]);
+		setVisibleTodos([...visibleTodos, newTask]);
 		setInputValue('');
 	};
 
-	const handleCheckboxChange = (
-		_e: ChangeEvent<HTMLInputElement>,
-		id: string,
-	): void => {
-		const updatedTodos = todos.map((todo) => {
+	const handleCompletionStatusChange = (id: string): void => {
+		const updatedTodos = todos.map((todo: ITodo) => {
 			if (todo.id === id) {
 				return { ...todo, completed: !todo.completed };
 			}
@@ -42,7 +62,23 @@ function App() {
 	};
 
 	const deleteTodoById = (id: string): void => {
-		setTodos(todos.filter((todo) => todo.id !== id));
+		setTodos(todos.filter((todo: ITodo) => todo.id !== id));
+	};
+
+	const filterCompletedTodos = () => {
+		setVisibleTodos(todos.filter((todo: ITodo) => todo.completed === true));
+	};
+
+	const filterActiveTodos = () => {
+		setVisibleTodos(todos.filter((todo: ITodo) => todo.completed === false));
+	};
+
+	const showAllTodos = () => {
+		setVisibleTodos(todos);
+	};
+
+	const deleteAllCompletedTodos = (): void => {
+		setTodos(todos.filter((todo: ITodo) => todo.completed === false));
 	};
 
 	return (
@@ -54,8 +90,13 @@ function App() {
 			/>
 			<TodosList
 				todos={todos}
+				visibleTodos={visibleTodos}
 				deleteTodoById={deleteTodoById}
-				handleCheckboxChange={handleCheckboxChange}
+				handleCompletionStatusChange={handleCompletionStatusChange}
+				filterActiveTodos={filterActiveTodos}
+				filterCompletedTodos={filterCompletedTodos}
+				deleteAllCompletedTodos={deleteAllCompletedTodos}
+				showAllTodos={showAllTodos}
 			/>
 		</>
 	);

@@ -1,28 +1,36 @@
 import { ITodo } from '../../interfaces.ts';
-import { ChangeEvent } from 'react';
 
 interface TodosListProps {
 	todos: ITodo[];
+	visibleTodos: ITodo[];
 	deleteTodoById: (id: string) => void;
-	handleCompletionStatusChange: (e: ChangeEvent<HTMLInputElement>) => void;
+	handleCompletionStatusChange: (id: string) => void;
+	filterCompletedTodos: () => void;
+	filterActiveTodos: () => void;
+	deleteAllCompletedTodos: () => void;
+	showAllTodos: () => void;
 }
 export const TodosList = ({
 	todos,
+	visibleTodos,
 	deleteTodoById,
 	handleCompletionStatusChange,
+	filterCompletedTodos,
+	filterActiveTodos,
+	deleteAllCompletedTodos,
+	showAllTodos,
 }: TodosListProps) => {
-	console.log(todos);
 	return (
 		<div>
-			{todos.length === 0 ? (
+			{visibleTodos.length === 0 ? (
 				<div>No todos</div>
 			) : (
-				todos.map((todo) => (
+				visibleTodos.map((todo) => (
 					<div key={todo.id}>
 						<input
 							type="checkbox"
 							checked={todo.completed}
-							onChange={(e) => handleCompletionStatusChange(e, todo.id)}
+							onChange={() => handleCompletionStatusChange(todo.id)}
 						/>
 						{todo.title}
 						<button
@@ -35,6 +43,11 @@ export const TodosList = ({
 					</div>
 				))
 			)}
+			<span>Осталось задач: {todos.length}</span>
+			<button onClick={() => filterCompletedTodos()}>Выполненные</button>
+			<button onClick={() => filterActiveTodos()}>Активные</button>
+			<button onClick={() => deleteAllCompletedTodos()}>Удалить выполненные</button>
+			<button onClick={() => showAllTodos()}>Показать все</button>
 		</div>
 	);
 };
