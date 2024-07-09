@@ -1,24 +1,24 @@
 import { ITodo } from '../../interfaces.ts';
+import { FilterType } from '../../enums.ts';
+import { Buttons } from '../../components';
 
 interface TodosListProps {
 	todos: ITodo[];
+	filterType: FilterType;
 	visibleTodos: ITodo[];
 	deleteTodoById: (id: string) => void;
 	handleCompletionStatusChange: (id: string) => void;
-	filterCompletedTodos: () => void;
-	filterActiveTodos: () => void;
+	showTodos: (filter: FilterType) => void;
 	deleteAllCompletedTodos: () => void;
-	showAllTodos: () => void;
 }
 export const TodosList = ({
 	todos,
 	visibleTodos,
+	filterType,
 	deleteTodoById,
 	handleCompletionStatusChange,
-	filterCompletedTodos,
-	filterActiveTodos,
+	showTodos,
 	deleteAllCompletedTodos,
-	showAllTodos,
 }: TodosListProps) => {
 	return (
 		<div>
@@ -44,10 +44,11 @@ export const TodosList = ({
 				))
 			)}
 			<span>Осталось задач: {todos.length}</span>
-			<button onClick={() => filterCompletedTodos()}>Выполненные</button>
-			<button onClick={() => filterActiveTodos()}>Активные</button>
+			<Buttons
+				filterType={filterType}
+				showTodos={showTodos}
+			/>
 			<button onClick={() => deleteAllCompletedTodos()}>Удалить выполненные</button>
-			<button onClick={() => showAllTodos()}>Показать все</button>
 		</div>
 	);
 };

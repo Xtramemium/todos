@@ -1,4 +1,5 @@
 import { FormEvent, FC, ChangeEvent } from 'react';
+import './Form.css';
 
 interface FormProps {
 	inputValue: string;
@@ -17,15 +18,19 @@ export const Form: FC<FormProps> = ({
 	};
 
 	return (
-		<form onSubmit={onFormSubmit}>
-			<div>
+		<form
+			className="form"
+			onSubmit={onFormSubmit}
+		>
+			<div className="form_input">
 				<input
+					placeholder="Enter new task"
 					type="text"
 					value={inputValue}
 					onChange={setInputValue}
 				/>
-				<button>Submit</button>
 			</div>
+			<button disabled={!inputValue}>Submit</button>
 		</form>
 	);
 };

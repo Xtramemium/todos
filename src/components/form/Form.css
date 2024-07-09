@@ -1,0 +1,23 @@
+/* form {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+} */
+
+.form_input {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.form_input input {
+	margin-right: 10px;
+	width: 300px;
+	height: 30px;
+	font-size: 20px;
+}
+
+.form_input input::placeholder {
+	font-size: 20px;
+}
