@@ -1,30 +1,16 @@
-# React + TypeScript + Vite
+# Документация для приложения ToDo List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Обзор
 
-Currently, two official plugins are available:
+Это простое приложение ToDo List, написанное на React и собранное с помощью Vite. Приложение позволяет пользователям добавлять задачи, отмечать их как выполненные, фильтровать задачи по статусу (все, активные, выполненные) и удалять выполненные задачи.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Функциональные возможности
 
-## Expanding the ESLint configuration
+1. Добавление задач: Пользователи могут добавлять новые задачи в список.
+2. Отметка выполнения задач: Пользователи могут отмечать задачи как выполненные.
+3. Фильтрация задач: Пользователи могут фильтровать задачи, чтобы просматривать все задачи, активные задачи или выполненные задачи.
+4. Удаление выполненных задач: Пользователи могут удалять задачи, которые были отмечены как выполненные.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Установка не требуется
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Приложение доступно по адресу https://todos-three-omega.vercel.app/
