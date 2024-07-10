@@ -17,7 +17,7 @@ export const DeleteCompleted = ({
 				disabled={checkIfCompleted}
 				onClick={deleteAllCompletedTodos}
 			>
-				Удалить все активные
+				Удалить все выполенные
 			</button>
 		</div>
 	);
