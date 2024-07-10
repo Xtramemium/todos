@@ -1,4 +1,3 @@
-import React from 'react';
 import './EmptyTodosList.css';
 
 export const EmptyTodosList = () => {
