@@ -53,7 +53,11 @@ button:focus,
 button:focus-visible {
 	outline: 4px auto -webkit-focus-ring-color;
 }
+button:focus:hover {
+	border-color: white;
+}
 button:disabled {
 	cursor: not-allowed;
+	border-color: #1a1a1a;
 	outline: none;
 }

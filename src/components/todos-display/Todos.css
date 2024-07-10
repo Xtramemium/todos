@@ -1,0 +1,13 @@
+.todo_wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	font-size: 20px;
+}
+
+.todo {
+	width: 300px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}

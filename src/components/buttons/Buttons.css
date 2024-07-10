@@ -1,0 +1,13 @@
+.buttons {
+	width: 100%;
+	justify-content: space-between;
+}
+
+.filter_buttons {
+	display: flex;
+	gap: 20px;
+}
+
+.delete_button button:focus {
+	outline: none;
+}

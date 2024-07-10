@@ -22,15 +22,17 @@ export const Form: FC<FormProps> = ({
 			className="form"
 			onSubmit={onFormSubmit}
 		>
-			<div className="form_input">
-				<input
-					placeholder="Enter new task"
-					type="text"
-					value={inputValue}
-					onChange={setInputValue}
-				/>
+			<div className="input_wrapper">
+				<div className="form_input">
+					<input
+						placeholder="Enter new task"
+						type="text"
+						value={inputValue}
+						onChange={setInputValue}
+					/>
+				</div>
+				<button disabled={!inputValue}>Submit</button>
 			</div>
-			<button disabled={!inputValue}>Submit</button>
 		</form>
 	);
 };

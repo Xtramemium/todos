@@ -1,11 +1,21 @@
 import { FilterType } from '../../enums';
+import { DeleteCompleted } from '../../components';
+import { ITodo } from '../../interfaces';
+import './Buttons.css';
 
 interface ButtonsProps {
+	todos: ITodo[];
 	filterType: FilterType;
 	showTodos: (filter: FilterType) => void;
+	deleteAllCompletedTodos: () => void;
 }
 
-export const Buttons = ({ filterType, showTodos }: ButtonsProps) => {
+export const Buttons = ({
+	filterType,
+	showTodos,
+	deleteAllCompletedTodos,
+	todos,
+}: ButtonsProps) => {
 	const titleForButton = (filterType: FilterType) => {
 		switch (filterType) {
 			case FilterType.All:
@@ -28,7 +38,6 @@ export const Buttons = ({ filterType, showTodos }: ButtonsProps) => {
 						outline: filterType === keyType ? '1px solid white' : '',
 					}}
 					onClick={() => {
-						console.log('keyType', keyType);
 						showTodos(keyType);
 					}}
 				>
@@ -38,5 +47,15 @@ export const Buttons = ({ filterType, showTodos }: ButtonsProps) => {
 		}
 	});
 
-	return <div className="buttons">{buttons}</div>;
+	return (
+		<div className="buttons">
+			<div className="filter_buttons">{buttons}</div>
+			<div className="delete_button">
+				<DeleteCompleted
+					deleteAllCompletedTodos={deleteAllCompletedTodos}
+					todos={todos}
+				/>
+			</div>
+		</div>
+	);
 };

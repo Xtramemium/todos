@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import './App.css';
-import { Form, TodosList } from './components';
+import { Form, TodosList, Buttons } from './components';
 import { ITodo } from './interfaces.ts';
 import { v4 as uuidv4 } from 'uuid';
 import { FilterType } from './enums.ts';
@@ -73,23 +73,28 @@ function App() {
 	return (
 		<div>
 			<h1>Todos</h1>
-			<div className="form_container">
-				<Form
-					inputValue={inputValue}
-					setInputValue={handleInputChange}
-					addTask={addTask}
-				/>
-			</div>
-			<div className="todos_container">
-				<TodosList
-					filterType={filterType}
-					todos={todos}
-					visibleTodos={visibleTodos}
-					deleteTodoById={deleteTodoById}
-					handleCompletionStatusChange={handleCompletionStatusChange}
-					showTodos={showTodos}
-					deleteAllCompletedTodos={deleteAllCompletedTodos}
-				/>
+			<div className="wrapper">
+				<div className="form_container">
+					<Form
+						inputValue={inputValue}
+						setInputValue={handleInputChange}
+						addTask={addTask}
+					/>
+				</div>
+				<div className="todos_container">
+					<TodosList
+						todos={todos}
+						visibleTodos={visibleTodos}
+						deleteTodoById={deleteTodoById}
+						handleCompletionStatusChange={handleCompletionStatusChange}
+					/>
+					<Buttons
+						filterType={filterType}
+						showTodos={showTodos}
+						deleteAllCompletedTodos={deleteAllCompletedTodos}
+						todos={todos}
+					/>
+				</div>
 			</div>
 		</div>
 	);
